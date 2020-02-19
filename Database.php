@@ -1,12 +1,7 @@
 <?php
 
-class Database{
-    private $pdo;
-    private $isConnect;
+class Database extends PDO{
 
-    public function connect(){
-        $this->pdo = new PDO('mysql:host=localhost;dbname=office', 'root', '');
-    }
 
     public function queryElement($element, &$query){
         for($i = 0; $i < count($element); $i++){
@@ -21,26 +16,33 @@ class Database{
         }
     }
 
-    public function select($fields, $tables, $where = null, $orderBy = null, $limit = null){
+    public function select($fields, $tables, $join = null, $where = null, $orderBy = null, $limit = null){
         if(!is_null($fields) || !is_null($tables)){
             $query = 'select ';
             $this->queryElement($fields, $query);
             $query .= 'from ';
             $this->queryElement($tables, $query);
+            if(!is_null($join)){
+                $this->queryElementSpace($join, $query);
+            }
             if(!is_null($where)){
                 $query .= 'where ';
                 $this->queryElementSpace($where, $query);
             }
             if(!is_null($orderBy)){
-                $query .= 'order_by ';
-                $this->queryElementSpace($orderBy, $query);
+                $query .= 'order by ';
+                $this->queryElement($orderBy, $query);
             }
-            echo $query;
+            if(!is_null($limit)){
+                $query .= 'limit ';
+                $this->queryElement($limit, $query);
+            }
+            echo "1";
+            $r = $this->query($query)->fetchAll();
+            print_r($r);
         }
         else{
             echo "Select fields and tables for query!";
         }
     }
-
-    public function selectJoin(){}
 }
