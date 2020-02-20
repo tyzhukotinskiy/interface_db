@@ -37,9 +37,8 @@ class Database extends PDO{
                 $query .= 'limit ';
                 $this->queryElement($limit, $query);
             }
-            echo "1";
-            $r = $this->query($query)->fetchAll();
-            print_r($r);
+            echo $query;
+            return $this->query($query)->fetchAll();
         }
         else{
             echo "Select fields and tables for query!";

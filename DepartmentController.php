@@ -6,14 +6,16 @@ class DepartmentController{
     }
 
     public function actionShowEmployees(){
-        echo "Pokaz employees";
         include_once 'Employ.php';
         $employ = new Employ();
-        echo "1";
-        $employ->getAllEmployees();
+        $employees = $employ->getAllEmployees();
+        var_dump($employees);
     }
 
     public function actionShowEmployeesFramework($framework){
-        echo "Pokaz employees $framework";
+        include_once 'Employ.php';
+        $employ = new Employ();
+        $employees = $employ->getEmployeesFramework($framework);
+        var_dump($employees);
     }
 }
