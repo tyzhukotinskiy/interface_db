@@ -1,8 +1,10 @@
 <?php
-    include_once 'Router.php';
-    $router = new Router();
-    $router->run();
+    include_once 'Database.php';
+    $db = new Database("mysql:host=localhost;dbname=office;charset=utf8", "root", "");
+    $query = $db->select(['*'], ['employees']);
+    var_dump($query);
 ?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -13,6 +15,6 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Work with DB</h1>
+    <h1>Hardcode</h1>
 </body>
 </html>
