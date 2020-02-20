@@ -9,13 +9,13 @@ class DepartmentController{
         include_once 'Employ.php';
         $employ = new Employ();
         $employees = $employ->getAllEmployees();
-        var_dump($employees);
+        include_once 'department.php';
     }
 
     public function actionShowEmployeesFramework($framework){
         include_once 'Employ.php';
         $employ = new Employ();
         $employees = $employ->getEmployeesFramework($framework);
-        var_dump($employees);
+        include_once 'department.php';
     }
 }
